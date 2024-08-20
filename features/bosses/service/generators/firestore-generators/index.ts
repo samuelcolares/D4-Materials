@@ -1,3 +1,4 @@
+import { TypeBossMaterials } from "@/types/index.type";
 import { DocumentData, QueryDocumentSnapshot, QuerySnapshot } from "firebase/firestore";
 
 export function generateBossesMaterialsFromFirestore(querySnapshot: QuerySnapshot) {
