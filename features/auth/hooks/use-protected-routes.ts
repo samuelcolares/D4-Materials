@@ -18,9 +18,9 @@ export default function useProtectedRoute(
 
   const route = useMemo(() => {
     const authRoutes = [
-      "/entrar",
+      "/login",
       // '/esqueceu-a-senha',
-      "/criar-conta",
+      "/create-account",
     ];
 
     const isLoggedIn = !!user;
@@ -42,7 +42,7 @@ export default function useProtectedRoute(
     if (userLoggedIn) {
       timeoutId = setTimeout(() => {
         replaceProtectedRoute(route);
-      }, 2000);
+      }, 500);
     }
 
     return () => {
