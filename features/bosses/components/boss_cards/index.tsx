@@ -1,6 +1,6 @@
 import useBossMaterials from "@/features/bosses/hooks/use-boss-materials";
 import React from "react";
-import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import {
   bosses,

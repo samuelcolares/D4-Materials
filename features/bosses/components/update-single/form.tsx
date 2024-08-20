@@ -1,5 +1,5 @@
 import z from "zod";
-import { FormProvider, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -11,18 +11,16 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import usePersonalBossesMaterials from "../../hooks/use-personal-boss-materials";
 import { TypeBossMaterials, TypeMaterials } from "@/types/index.type";
 import { updateUserSubcollection } from "@/firebase/queries/update-user-subcollection";
 import { useAuth } from "@/features/auth/context";
 import toast from "react-hot-toast";
-import { createUserSubcollection } from "@/firebase/queries/create-user-subcollection";
 import ImageComponent from "@/components/ui/image-component";
 import { materialsImg } from "../../utils";
 
 const ErrorMessage = "Min value is 0";
 
-const UpdateAllMaterialsSchema = z.object({
+const UpdateSingleMaterialSchema = z.object({
   material: z.coerce.number().gte(0, { message: ErrorMessage }),
 });
 
@@ -38,14 +36,14 @@ export const UpdateSingleForm = ({
   material: TypeMaterials;
 }) => {
   const { profile } = useAuth();
-  const form = useForm<z.infer<typeof UpdateAllMaterialsSchema>>({
-    resolver: zodResolver(UpdateAllMaterialsSchema),
+  const form = useForm<z.infer<typeof UpdateSingleMaterialSchema>>({
+    resolver: zodResolver(UpdateSingleMaterialSchema),
     defaultValues: {
       material: materialDefaultValue,
     },
   });
 
-  async function onSubmit(values: z.infer<typeof UpdateAllMaterialsSchema>) {
+  async function onSubmit(values: z.infer<typeof UpdateSingleMaterialSchema>) {
     try {
       if (!profile) throw Error("Profile not found");
       const content: Partial<TypeBossMaterials> = {

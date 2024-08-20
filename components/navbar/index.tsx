@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { useAuth } from "@/features/auth/context";
+import Settings from "@/features/User/components/user-settings";
 
 export function Navbar() {
   const { profile, logOut } = useAuth();
@@ -65,14 +66,15 @@ export function Navbar() {
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>{profile.username}</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Settings</DropdownMenuItem>
-              <DropdownMenuItem>Support</DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <Settings />
+              </DropdownMenuItem>
               <DropdownMenuSeparator />
               <DropdownMenuItem asChild>
                 <Button
                   onClick={logOut}
-                  variant={"ghost"}
-                  className="cursor-pointer w-full"
+                  variant={"destructive"}
+                  className="cursor-pointer w-full hover:!bg-red-700 h-auto justify-start hover:!text-white"
                 >
                   Logout
                 </Button>

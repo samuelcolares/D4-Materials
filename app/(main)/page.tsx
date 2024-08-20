@@ -1,9 +1,8 @@
 "use client";
-import BossCards from "@/components/boss_cards";
-import Materials from "@/components/boss_materials_table";
+
 import { Navbar } from "@/components/navbar";
-import { LoginForm } from "@/features/auth/components/login";
-import { useAuth } from "@/features/auth/context";
+import BossCards from "@/features/bosses/components/boss_cards";
+import Materials from "@/features/bosses/components/boss_materials_table";
 import React from "react";
 
 const HomePage = () => {

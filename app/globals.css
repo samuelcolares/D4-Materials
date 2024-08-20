@@ -8,9 +8,23 @@ html,
   height: 100%;
 }
 body {
-
   position: relative;
+}
+body::-webkit-scrollbar {
+  display: none;
+  background: rgba(255, 255, 255, 0.2);
+  width: 0.5em;
+}
 
+body::-webkit-scrollbar-thumb {
+  border-radius: 0.8rem;
+  background: rgba(255, 255, 255, 0.2);
+  transition: background 0.4s;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  border-radius: 0.8rem;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 @layer base {

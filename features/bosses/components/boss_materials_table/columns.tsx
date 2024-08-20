@@ -2,18 +2,8 @@
 
 import { TypeBossMaterials } from "@/types/index.type";
 import { ColumnDef } from "@tanstack/react-table";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
-import ImageComponent from "../ui/image-component";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import UpdateSingleMaterial from "@/features/bosses/components/update-single/update-single";
-
-// This type is used to define the shape of our data.
-// You can use a Zod schema here if you want.
-export type Payment = {
-  id: string;
-  amount: number;
-  status: "pending" | "processing" | "success" | "failed";
-  email: string;
-};
 
 export const columns: ColumnDef<TypeBossMaterials>[] = [
   {
