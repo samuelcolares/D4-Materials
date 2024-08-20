@@ -8,9 +8,11 @@ import {
   VarshanOrGregoireMaterials,
   ZirOrBeastOfIceMaterials,
 } from "@/features/bosses/utils";
+import { TypeListenerStatus } from "@/types/index.type";
+import { Loader2 } from "lucide-react";
 
 export default function BossCards() {
-  const { total } = useBossMaterials();
+  const { total, status } = useBossMaterials();
   const varshan = VarshanOrGregoireMaterials(total.malignantHeart);
   const gregoire = VarshanOrGregoireMaterials(total.livingSteel);
   const zir = ZirOrBeastOfIceMaterials(total.exquisiteBlood);
@@ -30,36 +32,42 @@ export default function BossCards() {
         tormented={varshan.tormented}
         src={bosses.varshan.img}
         title={bosses.varshan.name}
+        status={status}
       />
       <BossCard
         normal={gregoire.normal}
         tormented={gregoire.tormented}
         src={bosses.gregoire.img}
         title={bosses.gregoire.name}
+        status={status}
       />
       <BossCard
         normal={zir.normal}
         tormented={zir.tormented}
         src={bosses.zir.img}
         title={bosses.zir.name}
+        status={status}
       />
       <BossCard
         normal={beastOfIce.normal}
         tormented={beastOfIce.tormented}
         src={bosses.beastOfIce.img}
         title={bosses.beastOfIce.name}
+        status={status}
       />
       <BossCard
         normal={duriel.normal}
         tormented={duriel.tormented}
         src={bosses.duriel.img}
         title={bosses.duriel.name}
+        status={status}
       />
       <BossCard
         normal={andariel.normal}
         tormented={andariel.tormented}
         src={bosses.andariel.img}
         title={bosses.andariel.name}
+        status={status}
       />
     </div>
   );
@@ -70,12 +78,17 @@ function BossCard({
   tormented,
   src,
   title,
+  status,
 }: {
   normal: string;
   tormented: string;
   src: string;
   title: string;
+  status: TypeListenerStatus;
 }) {
+  const loadingNormal = status === 'loading' ? <Loader2 className="animate-spin text-white"/> : normal
+  const loadingTormented = status === 'loading' ? <Loader2 className="animate-spin text-white"/> : tormented
+
   return (
     <Card className="bg-tertiary/70 text-white relative border-0 min-w-80">
       <Image
@@ -92,8 +105,8 @@ function BossCard({
           </CardTitle>
         </CardHeader>
         <div className="mt-8">
-          <p className="text-lg">Normal: {normal}</p>
-          <p className="text-lg">Tormented: {tormented}</p>
+          <p className="text-lg flex gap-2 items-center">Normal: {loadingNormal}</p>
+          <p className="text-lg flex gap-2 items-center">Tormented: {loadingTormented}</p>
         </div>
       </CardContent>
     </Card>

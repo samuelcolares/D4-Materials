@@ -74,7 +74,7 @@ export function Navbar() {
                   variant={"ghost"}
                   className="cursor-pointer w-full"
                 >
-                  Sair
+                  Logout
                 </Button>
               </DropdownMenuItem>
             </DropdownMenuContent>
@@ -82,7 +82,7 @@ export function Navbar() {
         )}
         {!profile && (
           <Button asChild>
-            <Link href={"/entrar"}>Entrar</Link>
+            <Link href={"/login"}>Login</Link>
           </Button>
         )}
       </div>
