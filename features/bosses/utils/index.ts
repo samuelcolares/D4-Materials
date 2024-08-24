@@ -1,4 +1,4 @@
-import { TypeMaterials } from "@/types/index.type";
+import { TypeBossMaterialsName, TypeMaterials } from "@/types/index.type";
 
 export function VarshanOrGregoireMaterials(material: number) {
   const normal = (material / 5).toFixed(1);
@@ -7,6 +7,7 @@ export function VarshanOrGregoireMaterials(material: number) {
   const decimalGTE5 = firstDecimalGTE5(tormented);
 
   return {
+    TQTY: Math.floor(material / 15),
     normal: `${normal}x`,
     tormented: decimalGTE5
       ? `${tormented}x (up to next: ${upToNext})`
@@ -21,6 +22,7 @@ export function ZirOrBeastOfIceMaterials(material: number) {
   const decimalGTE5 = firstDecimalGTE5(tormented);
 
   return {
+    TQTY: Math.floor(material / 27),
     normal: `${normal}x`,
     tormented: decimalGTE5
       ? `${tormented}x (up to next: ${upToNext})`
@@ -47,6 +49,7 @@ export function DurielOrAndarielMaterials(
   return {
     normal: `${compareNormal}x`,
     tormented: `${compareTormented}x`,
+    TQTY: compareTormented,
   };
 }
 
@@ -109,3 +112,38 @@ export const materialsImg: Record<TypeMaterials, string> = {
   stygianStone:
     "https://firebasestorage.googleapis.com/v0/b/cmd4-18f0e.appspot.com/o/stygian-stone-160x160.webp?alt=media&token=7312beef-e1c4-402d-8369-0dea41f22022",
 };
+
+type TypeTotal = {
+  varshan: number;
+  gregoire: number;
+  zir: number;
+  beastOfIce: number;
+  materials: TypeBossMaterialsName;
+};
+
+export function bossesTotalMaterials({
+  varshan,
+  gregoire,
+  zir,
+  beastOfIce,
+  materials,
+}: TypeTotal) {
+  const totalSTnormalBosses = varshan + gregoire + zir + beastOfIce;
+  const eggs = varshan * 5 + materials.mucusSlickEgg;
+  const agony = gregoire * 5 + materials.shardsOfAgony;
+  const shackles = zir * 5 + materials.sandscorchedShackles;
+  const dolls = beastOfIce * 5 + materials.pincushionedDolls;
+  const Tduriel = DurielOrAndarielMaterials(eggs, agony);
+  const Tandariel = DurielOrAndarielMaterials(shackles, dolls);
+  const stygians = `Only first 4: ${totalSTnormalBosses}x`;
+  const stygiansTotal = `Total: ${
+    totalSTnormalBosses + Tandariel.TQTY + Tduriel.TQTY
+  }x`;
+
+  console.log(materials.shardsOfAgony, agony)
+
+  return {
+    stygians,
+    stygiansTotal,
+  };
+}
