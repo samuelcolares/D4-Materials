@@ -1,6 +1,12 @@
 import useBossMaterials from "@/features/bosses/hooks/use-boss-materials";
 import React from "react";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import Image from "next/image";
 import {
   bosses,
@@ -144,7 +150,7 @@ function BossCard({
     <Card className="bg-tertiary/70 text-white relative border-0 min-w-80">
       <Image
         src={src}
-        alt="Varshan"
+        alt={title}
         width={320}
         height={320}
         className="absolute -top-[70%] -left-[30%] opacity-70"
